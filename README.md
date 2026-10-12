@@ -32,3 +32,23 @@ yt-dlp --cookies-from-browser chrome -f "ba/b" -x --audio-format mp3 --audio-qua
    ```
 
 No API keys, no accounts, no sign-ups. Everything runs on your machine.
+
+## Web version (use it from your phone)
+
+`web_app.py` runs the same downloader as a mobile-friendly web page.
+Host it on your home server, open it from your phone anywhere, and the
+MP3 downloads straight to your phone — ready to move into your Drive
+samples folder.
+
+```
+python web_app.py
+# from outside your network:
+cloudflared tunnel --url http://localhost:5001
+```
+
+- Mobile-first page: paste URL → progress bar → "Save to phone" button
+- Uses your Chrome cookies on the server to get past YouTube's bot check
+  (Chrome must be installed and logged into YouTube on the server)
+- Downloads are cleaned up automatically after 24 hours
+- Optional password lock: `YT_BEATS_PASSWORD=secret python web_app.py`
+- iPhone tip: Share → Add to Home Screen and it feels like a real app
